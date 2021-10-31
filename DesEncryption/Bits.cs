@@ -1,4 +1,6 @@
-﻿namespace DesEncryption
+﻿using System.Collections.Generic;
+
+namespace DesEncryption
 {
     public static class Bits
     {

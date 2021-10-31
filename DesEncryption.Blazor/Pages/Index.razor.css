@@ -1,0 +1,28 @@
+﻿.input-row {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+h4 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex: 0.5;
+    align-items: center;
+    margin-right: 10px;
+    position: relative;
+}
+
+    .input-group label {
+        text-align: right;
+        position: absolute;
+        font-size: 12px;
+        background-color: white;
+        top: -12px;
+        left: 4px;
+        padding: 0 10px;
+    }

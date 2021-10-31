@@ -1,0 +1,59 @@
+﻿@using System.Text;
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h4>Data</h4>
+<div class="input-row">
+    <div class="input-group">
+        <label>ASCII</label>
+        <input type="text" value=@inputText @onchange="OnPlaintextChange" maxlength="8" />
+    </div>
+    <div class="input-group">
+        <label>Hex</label>
+        <input type="text" value=@inputHex @onchange="OnPlaintextHexChange" maxlength="16" />
+    </div>
+</div>
+
+<h4>Key</h4>
+<div class="input-row">
+    <div class="input-group">
+        <label>Hex</label>
+        <input type="text" value=@key @onchange="OnKeyChange" maxlength="16" />
+    </div>
+    <button @onclick="OnFixKey">Fix key</button>
+    @{
+        if (keyStrength == DesKeyStrength.Invalid)
+        {
+            <span style="color: gray">Invalid key</span>
+        }
+        else if (keyStrength == DesKeyStrength.Strong)
+        {
+            <span style="color: green">Strong key</span>
+        }
+        else if (keyStrength == DesKeyStrength.SemiWeak)
+        {
+            <span style="color: orange">Semi-weak key</span>
+        }
+        else if (keyStrength == DesKeyStrength.Weak)
+        {
+            <span style="color: red">Weak key</span>
+        }
+    }
+</div>
+
+<h4>Result</h4>
+<div>
+    <p>Hex: @(string.IsNullOrEmpty(result) ? "-" : result.PadLeft(16, '0'))</p>
+    <p>ASCII: @(string.IsNullOrEmpty(result) ? "-" : HexToText(result))</p>
+</div>
+
+<button disabled="@(!canDoOperation)" @onclick="Encrypt">Encrypt</button>
+<button disabled="@(!canDoOperation)" @onclick="Decrypt">Decrypt</button>
+
+<p style="color: red">@error</p>
+
+@foreach (var entropy in this.entropyData)
+{
+    <EntropyTable EntropyData="entropy" />
+}

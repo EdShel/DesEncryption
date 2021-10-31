@@ -1,0 +1,30 @@
+﻿<h3>Feistel round #@EntropyData.Step</h3>
+
+<table>
+    <tr>
+        @for(int i = 1 ;i <= 8; i++)
+        {
+            <th>@i</th>
+        }
+        <th>
+            &Emacr;
+        </th>
+    </tr>
+    @for (int byteIndex = 0; byteIndex < 8; byteIndex++)
+    {
+        <tr>
+            @foreach (var bit in YieldBits(byteIndex))
+            {
+                <td>@bit</td>
+            }
+            <td>&nbsp;</td>
+        </tr>
+    }
+    <tr>
+        @foreach (var entropy in YieldEntropyValues())
+        {
+            <td>@entropy.ToString("0.000")</td>
+        }
+        <td>@YieldEntropyValues().Average().ToString("0.000")</td>
+    </tr>
+</table>
